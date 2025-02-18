@@ -17,6 +17,7 @@
 		577F9C352D5F2C720035F959 /* yourLedgerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F9C342D5F2C720035F959 /* yourLedgerUITestsLaunchTests.swift */; };
 		577F9C432D5F61260035F959 /* ExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F9C422D5F61260035F959 /* ExpensesView.swift */; };
 		577F9C452D5F614A0035F959 /* IncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F9C442D5F614A0035F959 /* IncomeView.swift */; };
+		57940F592D646DC80031338A /* AddIncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57940F582D646DC80031338A /* AddIncomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		577F9C342D5F2C720035F959 /* yourLedgerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yourLedgerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		577F9C422D5F61260035F959 /* ExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesView.swift; sourceTree = "<group>"; };
 		577F9C442D5F614A0035F959 /* IncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeView.swift; sourceTree = "<group>"; };
+		57940F582D646DC80031338A /* AddIncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				577F9C172D5F2C700035F959 /* ContentView.swift */,
 				577F9C422D5F61260035F959 /* ExpensesView.swift */,
 				577F9C442D5F614A0035F959 /* IncomeView.swift */,
+				57940F582D646DC80031338A /* AddIncomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				577F9C182D5F2C700035F959 /* ContentView.swift in Sources */,
 				577F9C452D5F614A0035F959 /* IncomeView.swift in Sources */,
 				577F9C1A2D5F2C700035F959 /* Item.swift in Sources */,
+				57940F592D646DC80031338A /* AddIncomeView.swift in Sources */,
 				577F9C162D5F2C700035F959 /* yourLedgerApp.swift in Sources */,
 				577F9C432D5F61260035F959 /* ExpensesView.swift in Sources */,
 			);
