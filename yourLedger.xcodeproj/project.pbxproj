@@ -15,6 +15,8 @@
 		577F9C292D5F2C720035F959 /* yourLedgerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F9C282D5F2C720035F959 /* yourLedgerTests.swift */; };
 		577F9C332D5F2C720035F959 /* yourLedgerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F9C322D5F2C720035F959 /* yourLedgerUITests.swift */; };
 		577F9C352D5F2C720035F959 /* yourLedgerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F9C342D5F2C720035F959 /* yourLedgerUITestsLaunchTests.swift */; };
+		577F9C432D5F61260035F959 /* ExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F9C422D5F61260035F959 /* ExpensesView.swift */; };
+		577F9C452D5F614A0035F959 /* IncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F9C442D5F614A0035F959 /* IncomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		577F9C2E2D5F2C720035F959 /* yourLedgerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yourLedgerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		577F9C322D5F2C720035F959 /* yourLedgerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yourLedgerUITests.swift; sourceTree = "<group>"; };
 		577F9C342D5F2C720035F959 /* yourLedgerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yourLedgerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		577F9C422D5F61260035F959 /* ExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesView.swift; sourceTree = "<group>"; };
+		577F9C442D5F614A0035F959 /* IncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				577F9C152D5F2C700035F959 /* yourLedgerApp.swift */,
-				577F9C172D5F2C700035F959 /* ContentView.swift */,
+				577F9C412D5F60E40035F959 /* Views */,
 				577F9C192D5F2C700035F959 /* Item.swift */,
 				577F9C1B2D5F2C720035F959 /* Assets.xcassets */,
 				577F9C1D2D5F2C720035F959 /* Preview Content */,
@@ -128,6 +132,16 @@
 				577F9C342D5F2C720035F959 /* yourLedgerUITestsLaunchTests.swift */,
 			);
 			path = yourLedgerUITests;
+			sourceTree = "<group>";
+		};
+		577F9C412D5F60E40035F959 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				577F9C172D5F2C700035F959 /* ContentView.swift */,
+				577F9C422D5F61260035F959 /* ExpensesView.swift */,
+				577F9C442D5F614A0035F959 /* IncomeView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,8 +275,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				577F9C182D5F2C700035F959 /* ContentView.swift in Sources */,
+				577F9C452D5F614A0035F959 /* IncomeView.swift in Sources */,
 				577F9C1A2D5F2C700035F959 /* Item.swift in Sources */,
 				577F9C162D5F2C700035F959 /* yourLedgerApp.swift in Sources */,
+				577F9C432D5F61260035F959 /* ExpensesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

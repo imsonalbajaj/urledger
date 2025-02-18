@@ -27,14 +27,14 @@ struct ContentView: View {
             NavigationStack(path: $path) {
                 TabView {
                     Group {
-                        Text("a")
+                        ExpensesView(path: $path)
                             .tabItem {
                                 Image(systemName: "book")
                                 Text("Expenses")
                             }
                             .tag(0)
                         
-                        Text("b")
+                        IncomeView(path: $path)
                             .tabItem {
                                 Image(systemName: "indianrupeesign.circle")
                                 Text("Income")
@@ -42,7 +42,15 @@ struct ContentView: View {
                             .tag(1)
                     }
                 }
+                .navigationDestination(for: String.self) { destination in
+                    if destination == "AddExpensesView" {
+                        AddExpensesView()
+                    } else if destination == "AddIncomeView" {
+                        AddIncomeView()
+                    }
+                }
             }
+            .ignoresSafeArea(.all)
         }
     }
 
