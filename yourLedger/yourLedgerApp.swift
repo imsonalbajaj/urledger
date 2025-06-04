@@ -25,7 +25,7 @@ struct yourLedgerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AddIncomeView()
+            ContentView()
         }
         .modelContainer(sharedModelContainer)
     }

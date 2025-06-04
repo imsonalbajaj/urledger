@@ -29,17 +29,17 @@ enum IncomeSouce: String, Hashable {
 
 @Observable
 class AddIncomeViewModel {
-    var incomeSource: IncomeSouce?
+    var incomeSource: IncomeSouce? = .income
     var amount: String = ""
+    var showInvalidAmountAlert = false
+    var alertTitle: String = ""
+    var alertMessage: String = ""
+    let imageSources: [IncomeSouce] = [.income, .interest, .dividentandstocks, .other]
 }
 
 struct AddIncomeView : View {
     @State var viewModel = AddIncomeViewModel()
-    
     @FocusState var textFieldFocued: Bool
-    let imageSources: [IncomeSouce] = [.income, .interest, .dividentandstocks, .other]
-    
-    @State private var showInvalidAmountAlert = false
     
     var body: some View {
         ZStack{
@@ -64,13 +64,13 @@ struct AddIncomeView : View {
                 
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    ForEach(imageSources, id: \.self) { source in
+                    ForEach(viewModel.imageSources, id: \.self) { source in
                         HStack(spacing: 4) {
                             Image.getImg(.system(viewModel.incomeSource == source ? .checkmarksquarefill : .square))
                             Text(source.getTitleString())
                         }
                         .onTapGesture {
-                            viewModel.incomeSource =  viewModel.incomeSource == source ? nil : source
+                            viewModel.incomeSource = source
                         }
                     }
                 }
@@ -80,7 +80,11 @@ struct AddIncomeView : View {
                 Spacer()
                 
                 Button {
-                    
+                    if let amount = Double(viewModel.amount), amount >= 10 {
+                        
+                    } else {
+                        showAlertForMinimalAmount()
+                    }
                 } label: {
                     Text("Add to your income")
                         .foregroundStyle(Color.white)
@@ -105,18 +109,31 @@ struct AddIncomeView : View {
         .onChange(of: viewModel.amount) { oldval, newval in
             let filtered = newval.filter { "0123456789.".contains($0) }
             let decimalCount = filtered.filter { $0 == "." }.count
-
+            
             if filtered != newval || decimalCount > 1 || newval.first == "." || (Double(newval) ?? 0) >= 100_000_000 {
                 viewModel.amount = oldval
-                showInvalidAmountAlert = true
+                
+                showAlertForInvalidAmout()
             }
         }
-        .navigationTitle("Add Your income")
-        .alert("Invalid Input", isPresented: $showInvalidAmountAlert) {
+        .navigationTitle(viewModel.alertTitle)
+        .alert("Invalid Input", isPresented: $viewModel.showInvalidAmountAlert) {
             Button("OK", role: .cancel) { }
         } message: {
-            Text("Please enter a valid numeric amount.")
+            Text(viewModel.alertMessage)
         }
+    }
+    
+    func showAlertForInvalidAmout() {
+        viewModel.alertTitle = "Add Your income"
+        viewModel.alertMessage = "Please enter a valid numeric amount."
+        viewModel.showInvalidAmountAlert = true
+    }
+    
+    func showAlertForMinimalAmount() {
+        viewModel.alertTitle = "Amount"
+        viewModel.alertMessage = "Please enter a minimal amount."
+        viewModel.showInvalidAmountAlert = true
     }
 }
 
