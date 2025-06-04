@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct IncomeView: View {
-    @Binding var path: [String]
+    @Binding var path: [AppScreen]
     
     var body: some View {
         ZStack(alignment: .top) {
             VStack {
                 Button {
-                    path.append("AddIncomeView")
+                    path.append(.addincomeview)
                 } label: {
                     Text("add income")
                 }

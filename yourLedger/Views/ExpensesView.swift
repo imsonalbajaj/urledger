@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ExpensesView: View {
-    @Binding var path: [String]
+    @Binding var path: [AppScreen]
     
     var body: some View {
         VStack {
             Button {
-                path.append("AddExpensesView")
+                path.append(.addexpensesview)
             } label: {
                 Text("add expenses")
             }
