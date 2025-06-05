@@ -39,41 +39,33 @@ struct IncomeView: View {
     }
     
     var addBtn: some View {
-//        Button {
-//            path.append(.addincomeview)
-//        } label: {
-            Image.getImg(.system(.pluscirclefill))
-                .resizable()
-                .frame(width: 40, height: 40)
-                .foregroundStyle(Color.primary)
-                
-                .background(Color(uiColor: .systemBackground))
-                
-                
-                .clipShape(.circle)
-                .padding(2)
-                .clipShape(.circle)
-                .background(
-                    VStack {
-                        Circle()
-                            .fill(AngularGradient(
-                                gradient: Gradient(colors: [.teal, .cyan, .blue, .purple, .pink, .red, .orange, .yellow, .green, .teal]),
-                                center: .center)
-                            )
-                            .rotationEffect(rotationAngle)
-                    }
-                )
-                
-//        }
-        .offset(x: -16, y: -16)
-        .onAppear {
-            withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
-                rotationAngle = .degrees(360)
+        Image.getImg(.system(.pluscirclefill))
+            .resizable()
+            .frame(width: 40, height: 40)
+            .foregroundStyle(Color.primary)
+            .background(Color(uiColor: .systemBackground))
+            .clipShape(.circle)
+            .padding(2)
+            .clipShape(.circle)
+            .background(
+                VStack {
+                    Circle()
+                        .fill(AngularGradient(
+                            gradient: Gradient(colors: [.teal, .cyan, .blue, .purple, .pink, .red, .orange, .yellow, .green, .teal]),
+                            center: .center)
+                        )
+                        .rotationEffect(rotationAngle)
+                }
+            )
+            .offset(x: -16, y: -40)
+            .onAppear {
+                withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
+                    rotationAngle = .degrees(360)
+                }
             }
-        }
-        .onTapGesture {
-            path.append(.addincomeview)
-        }
+            .onTapGesture {
+                path.append(.addincomeview)
+            }
     }
 }
 
