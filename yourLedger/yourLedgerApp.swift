@@ -8,6 +8,8 @@
 import SwiftUI
 import SwiftData
 
+// MARK: - Custom Environment Key for Income Context
+
 private struct IncomeModelContextKey: EnvironmentKey {
     static let defaultValue: ModelContext? = nil
 }
@@ -19,31 +21,28 @@ extension EnvironmentValues {
     }
 }
 
+// MARK: - App Entry Point
+
 @main
 struct yourLedgerApp: App {
-    let sharedModelContainer: ModelContainer
     let incomeContainer: ModelContainer
 
     init() {
-        let itemSchema = Schema([Item.self])
         let incomeSchema = Schema([Income.self])
-
-        let itemConfig = ModelConfiguration(schema: itemSchema, isStoredInMemoryOnly: false)
-        let incomeConfig = ModelConfiguration(schema: incomeSchema, isStoredInMemoryOnly: false)
-
+        let incomeConfig = ModelConfiguration(for: Income.self, isStoredInMemoryOnly: false)
+        
         do {
-            self.sharedModelContainer = try ModelContainer(for: itemSchema, configurations: [itemConfig])
             self.incomeContainer = try ModelContainer(for: incomeSchema, configurations: [incomeConfig])
         } catch {
-            fatalError("Could not create ModelContainers: \(error)")
+            fatalError("Could not create incomeContainer: \(error)")
         }
+    
     }
 
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-        .environment(\.modelContext, sharedModelContainer.mainContext)
         .environment(\.incomeModelContext, incomeContainer.mainContext)
     }
 }
