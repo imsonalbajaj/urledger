@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-import _SwiftData_SwiftUI
+import Charts
+import SwiftData
 
 struct IncomeView: View {
     @Binding var path: [AppScreen]
@@ -17,12 +18,12 @@ struct IncomeView: View {
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             List {
+                incomeChart
+                
                 ForEach(incomes) { income in
                     VStack(alignment: .leading) {
                         Text("Amount: ₹\(income.amount)")
-                        Text("Source: \(income.source)")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                        
                         Text("Date: \(income.timestamp.formatted(date: .abbreviated, time: .shortened))")
                             .font(.caption2)
                             .foregroundStyle(.secondary)
@@ -41,6 +42,19 @@ struct IncomeView: View {
             } catch {
                 print("Error fetching income: \(error)")
             }
+        }
+    }
+    
+    var incomeChart: some View {
+        Chart(incomes) { income in
+            SectorMark(
+                angle: .value("Amount", income.amount),
+                innerRadius: .ratio(0.6),
+                angularInset: 8
+            )
+            .foregroundStyle(
+                by: .value("Source", income.source)
+            )
         }
     }
     
