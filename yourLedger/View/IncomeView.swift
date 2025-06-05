@@ -16,32 +16,32 @@ struct IncomeView: View {
     @State private var rotationAngle: Angle = .degrees(0)
     
     var body: some View {
-        ZStack(alignment: .bottomTrailing) {
-            List {
-                incomeChart
-                
-                ForEach(incomes) { income in
-                    VStack(alignment: .leading) {
-                        Text("Amount: ₹\(income.amount)")
-                        
-                        if let kind = IncomeSource(rawValue: income.source) {
-                            Text(kind.getTitleString())
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
-                        
-                        Text("Date: \(income.timestamp.formatted(date: .abbreviated, time: .shortened))")
-                            .font(.caption2)
+        List {
+            incomeChart
+            
+            ForEach(incomes) { income in
+                VStack(alignment: .leading) {
+                    Text("Amount: ₹\(income.amount)")
+                    
+                    if let kind = IncomeSource(rawValue: income.source) {
+                        Text(kind.getTitleString())
+                            .font(.caption)
                             .foregroundStyle(.secondary)
                     }
-                    .padding(.vertical, 4)
+                    
+                    Text("Date: \(income.timestamp.formatted(date: .abbreviated, time: .shortened))")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
                 }
+                .padding(.vertical, 4)
             }
-            .listStyle(.insetGrouped)
-            
+        }
+        .listStyle(.plain)
+        .overlay(alignment: .bottomTrailing) {
             addBtn
         }
         .navigationTitle("Your Income")
+        .navigationBarTitleDisplayMode(.inline)
         .task {
             do {
                 incomes = try incomeContext?.fetch(FetchDescriptor<Income>(sortBy: [SortDescriptor(\Income.timestamp, order: .reverse)])) ?? []

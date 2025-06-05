@@ -19,6 +19,7 @@ struct ExpensesView: View {
             }
         }
         .navigationTitle("Your Expenses")
+        .navigationBarTitleDisplayMode(.inline)
 //        .ignoresSafeArea(.all)
     }
 }
