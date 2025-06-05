@@ -24,6 +24,12 @@ struct IncomeView: View {
                     VStack(alignment: .leading) {
                         Text("Amount: ₹\(income.amount)")
                         
+                        if let kind = IncomeSource(rawValue: income.source) {
+                            Text(kind.getTitleString())
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        
                         Text("Date: \(income.timestamp.formatted(date: .abbreviated, time: .shortened))")
                             .font(.caption2)
                             .foregroundStyle(.secondary)
