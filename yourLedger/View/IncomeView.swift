@@ -42,6 +42,15 @@ struct IncomeView: View {
         }
         .navigationTitle("Your Income")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    path.append(.addincomeview)
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+        }
         .task {
             do {
                 incomes = try incomeContext?.fetch(FetchDescriptor<Income>(sortBy: [SortDescriptor(\Income.timestamp, order: .reverse)])) ?? []
@@ -67,9 +76,10 @@ struct IncomeView: View {
     var addBtn: some View {
         Image.getImg(.system(.pluscirclefill))
             .resizable()
+            .font(.system(size: 40, weight: .light))
             .frame(width: 40, height: 40)
-            .foregroundStyle(Color.primary)
-            .background(Color(uiColor: .systemBackground))
+            .foregroundStyle(Color(uiColor: .systemBackground))
+            .background(Color.primary)
             .clipShape(.circle)
             .padding(2)
             .clipShape(.circle)

@@ -17,7 +17,7 @@ struct AddIncomeView: View {
     
     var body: some View {
         ZStack {
-            Color.secondary
+            Color(.systemBackground)
                 .ignoresSafeArea(.all)
             
             VStack(alignment: .leading, spacing: 0) {
@@ -29,11 +29,12 @@ struct AddIncomeView: View {
                     .padding(16)
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
-                    .background(Color(uiColor: .secondarySystemBackground))
+                    .background(Color(.systemBackground))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .padding(.bottom, 20)
                 
                 Text("sources: ")
+                    .foregroundStyle(Color.secondary)
                     .padding(.bottom, 12)
                 
                 VStack(alignment: .leading, spacing: 4) {
@@ -42,12 +43,13 @@ struct AddIncomeView: View {
                             Image.getImg(.system(viewModel.incomeSource == source ? .checkmarksquarefill : .square))
                             Text(source.getTitleString())
                         }
+                        .foregroundStyle(viewModel.incomeSource == source ? Color.primary :  Color.secondary)
+                        .font(.body)
                         .onTapGesture {
                             viewModel.incomeSource = source
                         }
                     }
                 }
-                .foregroundStyle(Color.secondary)
                 .padding(EdgeInsets(top: 0, leading: 8, bottom: 20, trailing: 8))
                 
                 Spacer()
@@ -62,13 +64,13 @@ struct AddIncomeView: View {
                         .frame(maxWidth: .infinity)
                         .background(Color.blue)
                         .clipShape(RoundedRectangle(cornerRadius: 8.0))
-                        .padding(.horizontal, 50)
                 }
+                .padding(.horizontal, 50)
                 
                 Spacer()
             }
             .padding()
-            .background(Color.white.opacity(0.1))
+            .background(Color(.secondarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .padding()
         }
@@ -102,6 +104,16 @@ struct AddIncomeView: View {
     }
 }
 
-#Preview {
-    AddIncomeView()
+/*
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddIncomeView().preferredColorScheme(.dark)
+    }
 }
+
+struct ContentView2_Previews: PreviewProvider {
+    static var previews: some View {
+        AddIncomeView().preferredColorScheme(.light)
+    }
+}
+*/
