@@ -11,8 +11,12 @@ import SwiftData
 @Model
 final class Income {
     var timestamp: Date
+    var amount: Int
+    var source: String
     
-    init(timestamp: Date) {
+    init(timestamp: Date, amount: Int, source: String) {
         self.timestamp = timestamp
+        self.amount = amount
+        self.source = source
     }
 }
