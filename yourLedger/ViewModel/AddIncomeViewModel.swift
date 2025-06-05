@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @Observable
 class AddIncomeViewModel {
@@ -17,7 +18,9 @@ class AddIncomeViewModel {
     let imageSources: [IncomeSouce] = [.income, .interest, .dividentandstocks, .other]
     
     func validateAmount() -> Bool {
-        guard !amount.isEmpty else { return false }
+        guard !amount.isEmpty else {
+            return false
+        }
         
         let isNumeric = amount.allSatisfy { "0123456789".contains($0) }
         if !isNumeric {
@@ -33,12 +36,33 @@ class AddIncomeViewModel {
         }
     }
     
-    func addToYourIncome() -> Bool {
+    func addToIncomeValidate() -> Bool {
         if let amount = Double(amount), amount >= 10 {
             return true
         }
         showValidationAlert(message: "Please enter a minimal amount.")
         return false
+    }
+    
+    func saveIncome(using context: ModelContext) -> Bool {
+        guard addToIncomeValidate() else { return false }
+        let newIncome = Income(timestamp: Date(),
+                               amount: Int(amount) ?? 0,
+                               source: incomeSource.rawValue)
+        
+        context.insert(newIncome)
+        do {
+            try context.save()
+            amount = ""
+            
+            let incomes = try context.fetch(FetchDescriptor<Income>())
+            print("Total incomes after save: \(incomes.count)")
+            
+            return true
+        } catch {
+            print("Error saving income: \(error)")
+            return false
+        }
     }
     
     func showValidationAlert(message: String) {

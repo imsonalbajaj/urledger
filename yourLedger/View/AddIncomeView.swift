@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AddIncomeView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.incomeModelContext) private var incomeModelContext
+    
     @State var viewModel = AddIncomeViewModel()
     @FocusState var textFieldFocued: Bool
     @State var onappearcalled = false
@@ -50,9 +53,7 @@ struct AddIncomeView: View {
                 Spacer()
                 
                 Button {
-                    if !viewModel.addToYourIncome() {
-                        textFieldFocued = false
-                    }
+                    saveIncome()
                 } label: {
                     Text("Add to your income")
                         .foregroundStyle(Color.white)
@@ -82,7 +83,8 @@ struct AddIncomeView: View {
             textFieldFocued = false
         }
         .onChange(of: viewModel.amount) { oldval, newval in
-            if !viewModel.validateAmount() {
+            let isValid = viewModel.validateAmount()
+            if !isValid {
                 viewModel.amount = oldval
             }
         }
@@ -90,6 +92,12 @@ struct AddIncomeView: View {
             Button("OK", role: .cancel) { }
         } message: {
             Text(viewModel.alertMessage)
+        }
+    }
+    
+    func saveIncome() {
+        if let incomeModelContext, viewModel.saveIncome(using: incomeModelContext) {
+            presentationMode.wrappedValue.dismiss()
         }
     }
 }

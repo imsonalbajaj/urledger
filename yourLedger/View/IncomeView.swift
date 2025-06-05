@@ -11,7 +11,7 @@ import _SwiftData_SwiftUI
 struct IncomeView: View {
     @Binding var path: [AppScreen]
     @Environment(\.incomeModelContext) private var incomeContext
-    @Query(sort: \Income.timestamp, order: .reverse) private var incomes: [Income]
+    @State private var incomes: [Income] = []
     @State private var rotationAngle: Angle = .degrees(0)
     
     var body: some View {
@@ -35,7 +35,13 @@ struct IncomeView: View {
             addBtn
         }
         .navigationTitle("Your Income")
-        
+        .task {
+            do {
+                incomes = try incomeContext?.fetch(FetchDescriptor<Income>(sortBy: [SortDescriptor(\Income.timestamp, order: .reverse)])) ?? []
+            } catch {
+                print("Error fetching income: \(error)")
+            }
+        }
     }
     
     var addBtn: some View {
@@ -67,8 +73,4 @@ struct IncomeView: View {
                 path.append(.addincomeview)
             }
     }
-}
-
-#Preview {
-    IncomeView(path: .constant([]))
 }
