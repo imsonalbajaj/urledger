@@ -10,12 +10,12 @@ import SwiftData
 
 @Observable
 class AddIncomeViewModel {
-    var incomeSource: IncomeSouce = .income
+    var incomeSource: IncomeSource = .income
     var amount: String = ""
     var showInvalidAmountAlert = false
     var alertTitle: String = ""
     var alertMessage: String = ""
-    let imageSources: [IncomeSouce] = [.income, .interest, .dividentandstocks, .other]
+    let imageSources: [IncomeSource] = [.income, .interest, .dividentandstocks, .other]
     
     func validateAmount() -> Bool {
         guard !amount.isEmpty else {

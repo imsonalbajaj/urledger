@@ -1,11 +1,11 @@
 //
-//  IncomeSouce.swift
+//  IncomeSource.swift
 //  yourLedger
 //
 //  Created by Sonal on 05/06/25.
 //
 
-enum IncomeSouce: String, Hashable {
+enum IncomeSource: String, Hashable {
     case income
     case interest
     case dividentandstocks
