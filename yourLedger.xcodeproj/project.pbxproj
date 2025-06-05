@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,7 @@
 		577F9C432D5F61260035F959 /* ExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F9C422D5F61260035F959 /* ExpensesView.swift */; };
 		577F9C452D5F614A0035F959 /* IncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F9C442D5F614A0035F959 /* IncomeView.swift */; };
 		57940F592D646DC80031338A /* AddIncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57940F582D646DC80031338A /* AddIncomeView.swift */; };
+		57BD62602DF1683C00F7EBD5 /* AddIncomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD625F2DF1683C00F7EBD5 /* AddIncomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +59,12 @@
 		577F9C422D5F61260035F959 /* ExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesView.swift; sourceTree = "<group>"; };
 		577F9C442D5F614A0035F959 /* IncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeView.swift; sourceTree = "<group>"; };
 		57940F582D646DC80031338A /* AddIncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeView.swift; sourceTree = "<group>"; };
+		57BD625F2DF1683C00F7EBD5 /* AddIncomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		575747292DF07708002FBDA8 /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		577F9C0F2D5F2C700035F959 /* Frameworks */ = {
@@ -109,7 +115,9 @@
 			isa = PBXGroup;
 			children = (
 				577F9C152D5F2C700035F959 /* yourLedgerApp.swift */,
-				577F9C412D5F60E40035F959 /* Views */,
+				575747292DF07708002FBDA8 /* Model */,
+				577F9C412D5F60E40035F959 /* View */,
+				57BD625E2DF1681200F7EBD5 /* ViewModel */,
 				577F9C192D5F2C700035F959 /* Item.swift */,
 				575747252DF04C60002FBDA8 /* Strings.swift */,
 				575747272DF05374002FBDA8 /* CustomImage.swift */,
@@ -144,7 +152,7 @@
 			path = yourLedgerUITests;
 			sourceTree = "<group>";
 		};
-		577F9C412D5F60E40035F959 /* Views */ = {
+		577F9C412D5F60E40035F959 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				577F9C172D5F2C700035F959 /* ContentView.swift */,
@@ -153,7 +161,15 @@
 				577F9C442D5F614A0035F959 /* IncomeView.swift */,
 				57940F582D646DC80031338A /* AddIncomeView.swift */,
 			);
-			path = Views;
+			path = View;
+			sourceTree = "<group>";
+		};
+		57BD625E2DF1681200F7EBD5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				57BD625F2DF1683C00F7EBD5 /* AddIncomeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,6 +186,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				575747292DF07708002FBDA8 /* Model */,
 			);
 			name = yourLedger;
 			productName = yourLedger;
@@ -290,6 +309,7 @@
 				577F9C452D5F614A0035F959 /* IncomeView.swift in Sources */,
 				575747262DF04C64002FBDA8 /* Strings.swift in Sources */,
 				577F9C1A2D5F2C700035F959 /* Item.swift in Sources */,
+				57BD62602DF1683C00F7EBD5 /* AddIncomeViewModel.swift in Sources */,
 				57940F592D646DC80031338A /* AddIncomeView.swift in Sources */,
 				577F9C162D5F2C700035F959 /* yourLedgerApp.swift in Sources */,
 				577F9C432D5F61260035F959 /* ExpensesView.swift in Sources */,
