@@ -11,6 +11,7 @@ enum ImageName: String {
     case square
     case star
     case plus
+    case pluscirclefill = "plus.circle.fill"
     case checkmarksquarefill = "checkmark.square.fill"
     // Add more as needed
 }

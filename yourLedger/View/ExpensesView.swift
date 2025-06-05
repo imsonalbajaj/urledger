@@ -18,6 +18,7 @@ struct ExpensesView: View {
                 Text("add expenses")
             }
         }
+        .navigationTitle("Your Expenses")
 //        .ignoresSafeArea(.all)
     }
 }

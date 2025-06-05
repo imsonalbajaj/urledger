@@ -47,7 +47,8 @@ struct ContentView: View {
                             .tag(1)
                     }
                 }
-                
+                .tabViewStyle(.page(indexDisplayMode: .always))
+                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
                 .navigationDestination(for: AppScreen.self) { screen in
                     switch screen {
                     case .addexpensesview:
