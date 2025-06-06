@@ -112,6 +112,15 @@
 			path = IncomeView;
 			sourceTree = "<group>";
 		};
+		5751C7572DF2ECB500B4DFAA /* ExpenseView */ = {
+			isa = PBXGroup;
+			children = (
+				577F9C422D5F61260035F959 /* ExpensesView.swift */,
+				5751C7502DF2D09C00B4DFAA /* AddExpensesView.swift */,
+			);
+			path = ExpenseView;
+			sourceTree = "<group>";
+		};
 		577F9C092D5F2C700035F959 = {
 			isa = PBXGroup;
 			children = (
@@ -178,8 +187,7 @@
 			children = (
 				577F9C172D5F2C700035F959 /* ContentView.swift */,
 				575747232DF04AEE002FBDA8 /* SplashView.swift */,
-				577F9C422D5F61260035F959 /* ExpensesView.swift */,
-				5751C7502DF2D09C00B4DFAA /* AddExpensesView.swift */,
+				5751C7572DF2ECB500B4DFAA /* ExpenseView */,
 				5751C74F2DF2C99000B4DFAA /* IncomeView */,
 			);
 			path = View;
