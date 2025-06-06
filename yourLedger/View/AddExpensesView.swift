@@ -9,9 +9,9 @@ import SwiftUI
 
 struct AddExpensesView : View {
     @Environment(\.presentationMode) var presentationMode
-    @Environment(\.incomeModelContext) private var incomeModelContext
+    @Environment(\.expenseModelContext) private var expenseModelContext
     
-    @State var viewModel = AddIncomeViewModel()
+    @State var viewModel = AddExpenseViewModel()
     @FocusState var textFieldFocued: Bool
     @State var onappearcalled = false
     
@@ -23,7 +23,7 @@ struct AddExpensesView : View {
             VStack(alignment: .leading, spacing: 0) {
                 Spacer()
                 
-                TextField("Add your income here", text: $viewModel.amount)
+                TextField("Add your expense here", text: $viewModel.amount)
                     .focused($textFieldFocued)
                     .keyboardType(.numberPad)
                     .padding(16)
@@ -38,15 +38,15 @@ struct AddExpensesView : View {
                     .padding(.bottom, 12)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    ForEach(IncomeSource.allCases, id: \.self) { source in
+                    ForEach(ExpenseSource.allCases, id: \.self) { source in
                         HStack(spacing: 4) {
-                            Image.getImg(.system(viewModel.incomeSource == source ? .checkmarksquarefill : .square))
+                            Image.getImg(.system(viewModel.expenseSource == source ? .checkmarksquarefill : .square))
                             Text(source.getTitleString())
                         }
-                        .foregroundStyle(viewModel.incomeSource == source ? Color.primary :  Color.secondary)
+                        .foregroundStyle(viewModel.expenseSource == source ? Color.primary :  Color.secondary)
                         .font(.body)
                         .onTapGesture {
-                            viewModel.incomeSource = source
+                            viewModel.expenseSource = source
                         }
                     }
                 }
@@ -55,9 +55,9 @@ struct AddExpensesView : View {
                 Spacer()
                 
                 Button {
-                    saveIncome()
+                    saveExpense()
                 } label: {
-                    Text("Add to your income")
+                    Text("Add to your expense")
                         .foregroundStyle(Color.white)
                         .padding(16)
                         .frame(height: 40)
@@ -74,7 +74,7 @@ struct AddExpensesView : View {
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .padding()
         }
-        .navigationTitle("Add Your income")
+        .navigationTitle("Add Your Expense")
         .onAppear {
             if !onappearcalled {
                 textFieldFocued = true
@@ -97,8 +97,8 @@ struct AddExpensesView : View {
         }
     }
     
-    func saveIncome() {
-        if let incomeModelContext, viewModel.saveIncome(using: incomeModelContext) {
+    func saveExpense() {
+        if let expenseModelContext, viewModel.saveExpense(using: expenseModelContext) {
             presentationMode.wrappedValue.dismiss()
         }
     }
