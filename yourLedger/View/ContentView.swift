@@ -32,17 +32,17 @@ struct ContentView: View {
             NavigationStack(path: $path) {
                 TabView {
                     Group {
-                        ExpensesView(path: $path)
-                            .tabItem {
-                                Image(systemName: "book")
-                                Text("Expenses")
-                            }
-                            .tag(0)
-                        
                         IncomeView(path: $path)
                             .tabItem {
                                 Image(systemName: "indianrupeesign.circle")
                                 Text("Income")
+                            }
+                            .tag(0)
+                        
+                        ExpensesView(path: $path)
+                            .tabItem {
+                                Image(systemName: "book")
+                                Text("Expenses")
                             }
                             .tag(1)
                     }

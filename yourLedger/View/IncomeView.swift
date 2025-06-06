@@ -38,6 +38,7 @@ struct IncomeView: View {
                     ForEach(DateKind.allCases) { date in
                         Button {
                             selectedDate = date
+                            updateIncomeView()
                         } label: {
                             Text(date.titleString)
                         }
@@ -48,11 +49,7 @@ struct IncomeView: View {
             }
         }
         .task {
-            do {
-                incomes = try incomeContext?.fetch(FetchDescriptor<Income>(sortBy: [SortDescriptor(\Income.timestamp, order: .reverse)])) ?? []
-            } catch {
-                print("Error fetching income: \(error)")
-            }
+            updateIncomeView()
         }
     }
     
@@ -128,5 +125,20 @@ struct IncomeView: View {
             .onTapGesture {
                 path.append(.addincomeview)
             }
+    }
+    
+    func updateIncomeView() {
+        guard let context = incomeContext else { return }
+        incomes = TransactionFilterManager.getUpdateIncome(context: context, selectedDate: selectedDate)
+    }
+}
+
+extension Date {
+    func startOfMonth() -> Date {
+        Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
+    }
+
+    func endOfMonth() -> Date {
+        Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth())!
     }
 }

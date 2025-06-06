@@ -105,15 +105,15 @@ struct AddIncomeView: View {
 }
 
 /*
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddIncomeView().preferredColorScheme(.dark)
-    }
-}
-
-struct ContentView2_Previews: PreviewProvider {
-    static var previews: some View {
-        AddIncomeView().preferredColorScheme(.light)
-    }
-}
-*/
+ struct ContentView_Previews: PreviewProvider {
+ static var previews: some View {
+ AddIncomeView().preferredColorScheme(.dark)
+ }
+ }
+ 
+ struct ContentView2_Previews: PreviewProvider {
+ static var previews: some View {
+ AddIncomeView().preferredColorScheme(.light)
+ }
+ }
+ */
