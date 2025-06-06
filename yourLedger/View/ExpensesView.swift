@@ -23,10 +23,3 @@ struct ExpensesView: View {
 //        .ignoresSafeArea(.all)
     }
 }
-
-
-struct AddExpensesView : View {
-    var body: some View {
-        Text("AddExpensesView")
-    }
-}
