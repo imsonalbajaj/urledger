@@ -13,7 +13,7 @@ enum ImageName: String {
     case plus
     case pluscirclefill = "plus.circle.fill"
     case checkmarksquarefill = "checkmark.square.fill"
-    // Add more as needed
+    case line3horizontaldecrease = "line.3.horizontal.decrease"
 }
 
 enum ImageKind {

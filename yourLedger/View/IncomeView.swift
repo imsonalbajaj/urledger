@@ -18,6 +18,10 @@ struct IncomeView: View {
     
     var body: some View {
         List {
+            Text("Showing: \(selectedDate.titleString.capitalized)")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            
             incomeChart
             
             ForEach(incomes) { income in
@@ -45,7 +49,17 @@ struct IncomeView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                DatePickerView(selectedDate: $selectedDate)
+                Menu {
+                    ForEach(DateKind.allCases) { date in
+                        Button {
+                            selectedDate = date
+                        } label: {
+                            Text(date.titleString)
+                        }
+                    }
+                } label: {
+                    Image.getImg(.system(.line3horizontaldecrease))
+                }
             }
         }
         .task {
@@ -68,6 +82,17 @@ struct IncomeView: View {
                 by: .value("Source", income.source)
             )
         }
+        .padding()
+        .background{
+            Color(.systemBackground)
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 6.0))
+        .padding(6)
+        .background {
+            Color(.secondarySystemBackground)
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 6.0))
+        
     }
     
     var addBtn: some View {
@@ -100,45 +125,4 @@ struct IncomeView: View {
                 path.append(.addincomeview)
             }
     }
-}
-
-enum DateKind: Int, CaseIterable, Identifiable {
-    case currMonth
-    case prevMonth
-    case last3Months
-    case thisYear
-    case alltime
-
-    var id: Int { self.rawValue }
-    
-    var titleString: String {
-        switch self {
-        case .currMonth:
-            return "curr month"
-        case .prevMonth:
-            return "prev month"
-        case .last3Months:
-            return "last three month"
-        case .thisYear:
-            return "this year"
-        case .alltime:
-            return "all time"
-        }
-    }
-}
-
-struct DatePickerView: View {
-    @Binding var selectedDate: DateKind
-
-    var body: some View {
-        Picker("Select Period", selection: $selectedDate) {
-            ForEach(DateKind.allCases) { date in
-                Text(date.titleString).tag(date)
-            }
-        }
-    }
-}
-
-#Preview {
-    IncomeView(path: .constant([]))
 }
