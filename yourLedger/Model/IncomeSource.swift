@@ -5,7 +5,7 @@
 //  Created by Sonal on 05/06/25.
 //
 
-enum IncomeSource: String, Hashable {
+enum IncomeSource: String, Hashable, CaseIterable {
     case income
     case interest
     case dividentandstocks

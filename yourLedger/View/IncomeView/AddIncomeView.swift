@@ -38,7 +38,7 @@ struct AddIncomeView: View {
                     .padding(.bottom, 12)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    ForEach(viewModel.imageSources, id: \.self) { source in
+                    ForEach(IncomeSource.allCases, id: \.self) { source in
                         HStack(spacing: 4) {
                             Image.getImg(.system(viewModel.incomeSource == source ? .checkmarksquarefill : .square))
                             Text(source.getTitleString())

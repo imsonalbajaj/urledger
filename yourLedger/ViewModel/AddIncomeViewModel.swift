@@ -15,7 +15,6 @@ class AddIncomeViewModel {
     var showInvalidAmountAlert = false
     var alertTitle: String = ""
     var alertMessage: String = ""
-    let imageSources: [IncomeSource] = [.income, .interest, .dividentandstocks, .other]
     
     func validateAmount() -> Bool {
         guard !amount.isEmpty else {
