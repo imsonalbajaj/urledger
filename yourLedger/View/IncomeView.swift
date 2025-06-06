@@ -14,6 +14,7 @@ struct IncomeView: View {
     @Environment(\.incomeModelContext) private var incomeContext
     @State private var incomes: [Income] = []
     @State private var rotationAngle: Angle = .degrees(0)
+    @State private var selectedDate: DateKind = .currMonth
     
     var body: some View {
         List {
@@ -44,11 +45,7 @@ struct IncomeView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    path.append(.addincomeview)
-                } label: {
-                    Image(systemName: "plus")
-                }
+                DatePickerView(selectedDate: $selectedDate)
             }
         }
         .task {
@@ -103,4 +100,45 @@ struct IncomeView: View {
                 path.append(.addincomeview)
             }
     }
+}
+
+enum DateKind: Int, CaseIterable, Identifiable {
+    case currMonth
+    case prevMonth
+    case last3Months
+    case thisYear
+    case alltime
+
+    var id: Int { self.rawValue }
+    
+    var titleString: String {
+        switch self {
+        case .currMonth:
+            return "curr month"
+        case .prevMonth:
+            return "prev month"
+        case .last3Months:
+            return "last three month"
+        case .thisYear:
+            return "this year"
+        case .alltime:
+            return "all time"
+        }
+    }
+}
+
+struct DatePickerView: View {
+    @Binding var selectedDate: DateKind
+
+    var body: some View {
+        Picker("Select Period", selection: $selectedDate) {
+            ForEach(DateKind.allCases) { date in
+                Text(date.titleString).tag(date)
+            }
+        }
+    }
+}
+
+#Preview {
+    IncomeView(path: .constant([]))
 }
