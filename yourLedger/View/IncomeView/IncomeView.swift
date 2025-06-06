@@ -22,9 +22,10 @@ struct IncomeView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
             
-            incomeChart
-            
-            incomesTransactionsView
+            if incomes.count > 0 {
+                incomeChart
+                incomesTransactionsView
+            }
         }
         .listStyle(.plain)
         .overlay(alignment: .bottomTrailing) {

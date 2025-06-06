@@ -10,8 +10,8 @@ import Charts
 
 struct ExpensesView: View {
     @Binding var path: [AppScreen]
-    @Environment(\.incomeModelContext) private var incomeContext
-    @State private var incomes: [Income] = []
+    @Environment(\.expenseModelContext) private var expenseContext
+    @State private var expenses: [Expense] = []
     @State private var rotationAngle: Angle = .degrees(0)
     @State private var selectedDate: DateKind = .currMonth
     
@@ -21,15 +21,16 @@ struct ExpensesView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
             
-            incomeChart
-            
-            incomesTransactionsView
+            if expenses.count > 0 {
+                expenseChart
+                expensesTransactionsView
+            }
         }
         .listStyle(.plain)
         .overlay(alignment: .bottomTrailing) {
             addBtn
         }
-        .navigationTitle("Your Income")
+        .navigationTitle("Your Expenses")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -37,7 +38,7 @@ struct ExpensesView: View {
                     ForEach(DateKind.allCases) { date in
                         Button {
                             selectedDate = date
-                            updateIncomeView()
+                            updateExpenseView()
                         } label: {
                             Text(date.titleString)
                         }
@@ -48,22 +49,22 @@ struct ExpensesView: View {
             }
         }
         .task {
-            updateIncomeView()
+            updateExpenseView()
         }
     }
     
-    var incomesTransactionsView: some View {
-        ForEach(incomes) { income in
+    var expensesTransactionsView: some View {
+        ForEach(expenses) { expense in
             VStack(alignment: .leading) {
-                Text("Amount: ₹\(income.amount)")
+                Text("Amount: ₹\(expense.amount)")
                 
-                if let kind = IncomeSource(rawValue: income.source) {
+                if let kind = ExpenseSource(rawValue: expense.source) {
                     Text(kind.getTitleString())
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
                 
-                Text("Date: \(income.timestamp.formatted(date: .abbreviated, time: .shortened))")
+                Text("Date: \(expense.timestamp.formatted(date: .abbreviated, time: .shortened))")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }
@@ -71,15 +72,15 @@ struct ExpensesView: View {
         }
     }
     
-    var incomeChart: some View {
-        Chart(incomes) { income in
+    var expenseChart: some View {
+        Chart(expenses) { expense in
             SectorMark(
-                angle: .value("Amount", income.amount),
+                angle: .value("Amount", expense.amount),
                 innerRadius: .ratio(0.6),
                 angularInset: 8
             )
             .foregroundStyle(
-                by: .value("Source", income.source)
+                by: .value("Source", expense.source)
             )
         }
         .padding()
@@ -122,12 +123,12 @@ struct ExpensesView: View {
                 }
             }
             .onTapGesture {
-                path.append(.addincomeview)
+                path.append(.addexpensesview)
             }
     }
     
-    func updateIncomeView() {
-        guard let context = incomeContext else { return }
-        incomes = TransactionFilterManager.getUpdateIncome(context: context, selectedDate: selectedDate)
+    func updateExpenseView() {
+        guard let context = expenseContext else { return }
+        expenses = TransactionFilterManager.getUpdateExpense(context: context, selectedDate: selectedDate)
     }
 }
