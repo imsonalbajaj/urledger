@@ -24,6 +24,8 @@
 		57940F592D646DC80031338A /* AddIncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57940F582D646DC80031338A /* AddIncomeView.swift */; };
 		57A0572F2DF6ADF000F9168D /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A0572E2DF6ADEE00F9168D /* AddTransactionView.swift */; };
 		57A057312DF6AE1900F9168D /* AddTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A057302DF6AE1800F9168D /* AddTransactionViewModel.swift */; };
+		57A057552DF6F74100F9168D /* TransactionOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A057542DF6F73F00F9168D /* TransactionOverviewView.swift */; };
+		57A057572DF6F78A00F9168D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A057562DF6F78800F9168D /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		57940F582D646DC80031338A /* AddIncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeView.swift; sourceTree = "<group>"; };
 		57A0572E2DF6ADEE00F9168D /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
 		57A057302DF6AE1800F9168D /* AddTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewModel.swift; sourceTree = "<group>"; };
+		57A057542DF6F73F00F9168D /* TransactionOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionOverviewView.swift; sourceTree = "<group>"; };
+		57A057562DF6F78800F9168D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -98,6 +102,7 @@
 		5751C74C2DF2C87F00B4DFAA /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				57A057562DF6F78800F9168D /* Utils.swift */,
 				5751C74D2DF2C88D00B4DFAA /* TransactionFilterManager.swift */,
 			);
 			path = Utils;
@@ -188,6 +193,7 @@
 				577F9C172D5F2C700035F959 /* ContentView.swift */,
 				575747232DF04AEE002FBDA8 /* SplashView.swift */,
 				57A0572E2DF6ADEE00F9168D /* AddTransactionView.swift */,
+				57A057542DF6F73F00F9168D /* TransactionOverviewView.swift */,
 				5751C7572DF2ECB500B4DFAA /* ExpenseView */,
 				5751C74F2DF2C99000B4DFAA /* IncomeView */,
 			);
@@ -335,6 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57A057552DF6F74100F9168D /* TransactionOverviewView.swift in Sources */,
 				577F9C182D5F2C700035F959 /* ContentView.swift in Sources */,
 				577F9C452D5F614A0035F959 /* IncomeView.swift in Sources */,
 				575747262DF04C64002FBDA8 /* Strings.swift in Sources */,
@@ -347,6 +354,7 @@
 				575747282DF0537A002FBDA8 /* CustomImage.swift in Sources */,
 				5751C74E2DF2C88D00B4DFAA /* TransactionFilterManager.swift in Sources */,
 				5751C7512DF2D09D00B4DFAA /* AddExpensesView.swift in Sources */,
+				57A057572DF6F78A00F9168D /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
