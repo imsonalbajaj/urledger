@@ -1,33 +1,35 @@
 //
-//  AddExpenseViewModel.swift
+//  AddTransactionViewModel.swift
 //  yourLedger
 //
-//  Created by Sonal on 06/06/25.
+//  Created by Sonal on 09/06/25.
 //
 
 import SwiftUI
 import SwiftData
 
 @Observable
-class AddExpenseViewModel {
-    var expenseSource: ExpenseSource = .food
+class AddTransactionViewModel<SourceType: Hashable & CaseIterable & RawRepresentable> where SourceType.RawValue == String {
+    var source: SourceType
     var amount: String = ""
     var showInvalidAmountAlert = false
     var alertTitle: String = ""
     var alertMessage: String = ""
-    let imageSources: [ExpenseSource] = ExpenseSource.allCases
-    
+    let imageSources: [SourceType]
+
+    init(defaultSource: SourceType) {
+        self.source = defaultSource
+        self.imageSources = Array(SourceType.allCases)
+    }
+
     func validateAmount() -> Bool {
-        guard !amount.isEmpty else {
-            return false
-        }
-        
+        guard !amount.isEmpty else { return false }
         let isNumeric = amount.allSatisfy { "0123456789".contains($0) }
         if !isNumeric {
             showValidationAlert(message: "Amount must be numeric.")
             return false
         }
-        
+
         if let value = Double(amount), value < 10_000_000 {
             return true
         } else {
@@ -35,37 +37,31 @@ class AddExpenseViewModel {
             return false
         }
     }
-    
-    func addToExpenseValidate() -> Bool {
-        if let amount = Double(amount), amount >= 10 {
+
+    func addValidation() -> Bool {
+        if let value = Double(amount), value >= 10 {
             return true
         }
         showValidationAlert(message: "Please enter a minimal amount.")
         return false
     }
-    
-    func saveExpense(using context: ModelContext) -> Bool {
-        guard addToExpenseValidate() else { return false }
-        let newExpense = Expense(timestamp: Date(),
-                                 amount: Int(amount) ?? 0,
-                                 source: expenseSource.rawValue)
 
-        context.insert(newExpense)
+    func save<T: PersistentModel>(using context: ModelContext, createModel: (Date, Int, String) -> T) -> Bool {
+        guard addValidation() else { return false }
+        let model = createModel(Date(), Int(amount) ?? 0, source.rawValue)
+        context.insert(model)
+
         do {
             try context.save()
             amount = ""
-
-            let expenses = try context.fetch(FetchDescriptor<Expense>())
-            print("Total expenses after save: \(expenses.count)")
-
             return true
         } catch {
-            print("Error saving expense: \(error)")
+            print("Error saving model: \(error)")
             return false
         }
     }
-    
-    func showValidationAlert(message: String) {
+
+    private func showValidationAlert(message: String) {
         alertTitle = "Invalid Amount"
         alertMessage = message
         showInvalidAmountAlert = true
