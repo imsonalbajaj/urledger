@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct AddExpensesView: View {
-    @Environment(\.expenseModelContext) private var context
+    @Environment(\.modelContext) private var context
 
     var body: some View {
         AddTransactionView<ExpenseSource, Expense>(
-            context: context!,
+            context: context,
             title: "Add Your Expense",
             buttonTitle: "Add to your expense",
             viewModel: AddTransactionViewModel(defaultSource: ExpenseSource.food),

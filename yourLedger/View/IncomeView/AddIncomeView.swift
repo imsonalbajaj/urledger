@@ -9,11 +9,11 @@ import SwiftUI
 import SwiftData
 
 struct AddIncomeView: View {
-    @Environment(\.incomeModelContext) private var context
+    @Environment(\.modelContext) private var context
 
     var body: some View {
         AddTransactionView<IncomeSource, Income>(
-            context: context!,
+            context: context,
             title: "Add Your Income",
             buttonTitle: "Add to your income",
             viewModel: AddTransactionViewModel(defaultSource: IncomeSource.income),

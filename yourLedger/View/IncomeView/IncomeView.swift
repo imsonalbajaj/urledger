@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct IncomeView: View {
-    @Environment(\.incomeModelContext) private var context
+    @Environment(\.modelContext) private var context
     @Binding var path: [AppScreen]
 
     var body: some View {
