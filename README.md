@@ -7,6 +7,14 @@ UrLedger is a simple personal finance tracking app built with SwiftUI. It allows
 - View running balance and transaction history
 - SwiftUI-based clean UI
 
+<p float="left">
+  <img src="https://raw.githubusercontent.com/imsonalbajaj/urledger/main/yourLedger/Images/img0.png" width="250" />
+  <img src="https://raw.githubusercontent.com/imsonalbajaj/urledger/main/yourLedger/Images/img1.png" width="250" />
+  <img src="https://raw.githubusercontent.com/imsonalbajaj/urledger/main/yourLedger/Images/img2.png" width="250" />
+  <img src="https://raw.githubusercontent.com/imsonalbajaj/urledger/main/yourLedger/Images/img3.png" width="250" />
+</p>
+
+
 ## 🛠️ Getting Started
 
 ```bash
