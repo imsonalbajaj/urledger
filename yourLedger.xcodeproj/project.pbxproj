@@ -72,6 +72,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		575747292DF07708002FBDA8 /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
+		57AE4FB72DFF2684001F00BB /* Images */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Images; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +155,7 @@
 				577F9C412D5F60E40035F959 /* View */,
 				57BD625E2DF1681200F7EBD5 /* ViewModel */,
 				5751C74C2DF2C87F00B4DFAA /* Utils */,
+				57AE4FB72DFF2684001F00BB /* Images */,
 				575747252DF04C60002FBDA8 /* Strings.swift */,
 				575747272DF05374002FBDA8 /* CustomImage.swift */,
 				577F9C1B2D5F2C720035F959 /* Assets.xcassets */,
@@ -225,6 +227,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				575747292DF07708002FBDA8 /* Model */,
+				57AE4FB72DFF2684001F00BB /* Images */,
 			);
 			name = yourLedger;
 			productName = yourLedger;
